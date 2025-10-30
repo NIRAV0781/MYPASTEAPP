@@ -13,22 +13,27 @@ export const PasteSlice = createSlice({
   reducers: {
     addTopastes: (state, action) => {
       const paste = action.payload;
-      state.pastes.push(paste);
+      if (paste.title.trim() === "" || paste.content.trim() === ""){
+        toast.error("Title or Content cannot be empty")
+        return;
+      }
+        state.pastes.push(paste);
       localStorage.setItem("pastes", JSON.stringify(state.pastes));
       toast.success("Paste created successfully")
+
     },
     updateTopaste: (state, action) => {
       const paste = action.payload;
-      const index = state.pastes.findIndex((item)=>{
+      const index = state.pastes.findIndex((item) => {
         return item._id === paste._id
       });
-      if(index >= 0){
-        state.pastes[index]= paste;
+      if (index >= 0) {
+        state.pastes[index] = paste;
 
         localStorage.setItem("pastes", JSON.stringify(state.pastes));
 
         toast.success("Paste updated")
-      } 
+      }
     },
     resetAllpaste: (state, action) => {
       state.pastes = [];
@@ -39,11 +44,11 @@ export const PasteSlice = createSlice({
       const pastId = action.payload;
 
       console.log(pastId);
-      const index = state.pastes.findIndex((item)=>{
+      const index = state.pastes.findIndex((item) => {
         return item._id === pastId
       });
 
-      if(index >= 0){
+      if (index >= 0) {
         state.pastes.splice(index, 1);
 
         localStorage.setItem("pastes", JSON.stringify(state.pastes));
