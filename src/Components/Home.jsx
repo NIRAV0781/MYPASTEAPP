@@ -50,7 +50,7 @@ const Home = () => {
         {/* Title Input */}
         <div className="flex gap-3 items-center mb-6">
           <input
-            className="flex-1 border border-amber-300 rounded-2xl bg-amber-50 focus:bg-white p-3 text-lg outline-none focus:ring-2 focus:ring-amber-400 transition-all duration-200"
+            className="flex-1 w-full border border-amber-300 rounded-2xl bg-amber-50 focus:bg-white p-3 text-lg outline-none focus:ring-2 focus:ring-amber-400 transition-all duration-200"
             type="text"
             placeholder="Enter Title..."
             value={title}
